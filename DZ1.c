@@ -70,7 +70,7 @@ void pushPlu(plurality **plu)
         tmp->next=(*plu);
         (*plu)=tmp;
     }
-    else printf("Такой элемент уже есть\n");
+    else printf("Such an element exists\n");
 }
 
 void printPlu(plurality **plu)
@@ -89,13 +89,13 @@ void deletePlu(plurality **plu)
     char *str=enterstr();
     if(tmp==NULL)
     {
-        printf("Множество пустое\n");
+        printf("Empty plurality\n");
         return;
     }
     int c=searchPlu(plu,str);
     if(c==0)
     {
-        printf("Совпадений не найдено\n");
+        printf("No matches found\n");
         return;
     }
     if(c==1)
@@ -118,23 +118,23 @@ int main()
     setlocale(LC_ALL, "Rus");
     int menu,i;
     plurality *plu1=NULL,*plu2=NULL;
-    printf("\n-Создание первого множества-\n");
+    printf("\n-Create the first plurality-\n");
     while (1)
     {
-        printf("Введите элемент: ");
+        printf("Enter element: ");
         pushPlu(&plu1);
-        printf("Продолжить?\n1-Да\\2-Нет\n");
+        printf("Continue?\n1-Yes\\2-No\n");
         scanf("%d",&i);
         getchar();
         if(i!=1)
             break;
     }
-    printf("\n-Создание второго множества-\n");
+    printf("\n-Create the second plurality-\n");
     while (1)
     {
-        printf("Введите элемент: ");
+        printf("Enter element: ");
         pushPlu(&plu2);
-        printf("Продолжить?\n1-Да\\2-Нет\n");
+        printf("Continue?\n1-Yes\\2-No\n");
         scanf("%d",&i);
         getchar();
         if(i!=1)
@@ -143,42 +143,42 @@ int main()
     while(1)
     {
         i=0;
-        printf("\n-Меню-\n1-Первое множество\n2-Второе множество\n3-Выход\nВведите номер пункта: ");
+        printf("\n-Menu-\n1-First plurality\n2-Second plurality\n3-Exit\nEnter number: ");
         scanf("%d",&menu);
         switch(menu)
         {
             case 1:i=1;break;
             case 2:i=2;break;
             case 3:return 0;break;
-            default: printf("Неверное число\n");
+            default: printf("Invalid number\n");
         }
         while(i!=0)
         {
-            printf("\n-Меню %d-го множество-\n1-Вывод элементов множества\n2-Добавление элемента множества\n3-Удаление элемента множества\n4-Назад\nВведите номер пункта: ",i);
+            printf("\n-Menu %d plurality-\n1-Print elements of the plurality\n2-Add element of the plurality\n3-Delete element of the plurality\n4-Back\nEnter number: ",i);
             scanf("%d",&menu);
             getchar();
             switch(menu)
             {
                 case 1:
-                    printf("\n-Вывод элементов множества-\n");
+                    printf("\n-Print-\n");
                     if(i==1)
                         printPlu(&plu1);
                     else printPlu(&plu2);
                     break;
                 case 2:
-                    printf("\n-Добавление элемента множества-\nВведите элемент: ");
+                    printf("\n-Add-\nEnter element: ");
                     if(i==1)
                         pushPlu(&plu1);
                     else pushPlu(&plu2);
                     break;
                 case 3:
-                    printf("\n-Удаление элемента множества-\nВведите элемент: ");
+                    printf("\n-Remove-\nEnter element: ");
                     if(i==1)
                         deletePlu(&plu1);
                     else deletePlu(&plu2);
                     break;
                 case 4: i=0;break;
-                default: printf("Неверное число\n");
+                default: printf("Invalid number\n");
             }
         }
     }
